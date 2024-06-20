@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/player-tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
@@ -44,5 +44,5 @@
     "url": "https://github.com/Velover/player-tracker/issues"
   },
   "homepage": "https://github.com/Velover/player-tracker#readme",
-  "description": ""
+  "description": "Tracker of player's character."
 }
