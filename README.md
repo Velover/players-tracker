@@ -1,25 +1,25 @@
-#Player Tracker
+# Players Tracker
 
 Tracker of player's character.
 
 Handle getting humanoid / root_part / character / animator from one place
 
-##Getting the Tracker
+## Getting the Tracker
 
-###Player Tracker
+### Player Tracker
 ```ts
 const player_tracker = PlayersTracker.GetTracker(player)!;
 ```
 
-###Local Player Tracker
+### Local Player Tracker
 ```ts
 /**@client*/
 const local_player_tracker = PlayersTracker.GetLocalTracker()
 ```
 
-##Getting items
+## Getting items
 
-###can_be_dead
+### can_be_dead
 ```ts
 /**
 * if can_be_dead is false and the character is dead, will await respawn and will return the new Humanoid
@@ -29,31 +29,31 @@ const local_player_tracker = PlayersTracker.GetLocalTracker()
 */
 const can_be_dead: boolean = true 
 ```
-###Humanoid
+### Humanoid
 ```ts
 const humanoid: Humanoid | undefined = player_tracker.GetHumanoid()
 const humanoid: Promise<Humanoid> = player_tracker.AwaitHumanoid(can_be_dead)
 ```
 
-###RootPart
+### RootPart
 ```ts
 const root_part: BasePart | undefined = player_tracker.GetRootPart()
 const root_part: Promise<BasePart> = player_tracker.AwaitRootPart(can_be_dead)
 ```
 
-###Animator
+### Animator
 ```ts
 const animator: Animator | undefined = player_tracker.GetAnimator()
 const animator: Promise<Animator> = player_tracker.AwaitAnimator(can_be_dead)
 ```
 
-###Character
+### Character
 ```ts
 const character: Model | undefined = player_tracker.GetCharacter()
 const character: Promise<Model> = player_tracker.AwaitCharacter(can_be_dead)
 ```
 
-##Loading Animation
+## Loading Animation
 ```ts
 const animation_track: AnimationTrack | undefined = player_tracker.TryLoadAnimation(animation, {
   Priority: Enum.AnimationPriority.Action,
@@ -62,6 +62,16 @@ const animation_track: AnimationTrack | undefined = player_tracker.TryLoadAnimat
 const animation_track: Promise<AnimationTrack> = player_tracker.AwaitAndLoadAnimation(animation, {
   Looped: true
 })
+```
+
+## Events
+### OnDied
+```ts
+player_tracker.on_died.Connect(() => {})
+```
+### OnSpawned
+```ts
+player_tracker.on_spawned.Connect(() => {})
 ```
 
 
