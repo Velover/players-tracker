@@ -71,7 +71,7 @@ export namespace PlayersTracker {
 
     async AwaitRootPart(can_be_dead: boolean = false) {
       this.WaitTilCharacterWillAppear(can_be_dead);
-      return this.GetRootPart();
+      return this.GetRootPart()!;
     }
 
     async AwaitAnimator(can_be_dead: boolean = false) {
@@ -166,9 +166,32 @@ export namespace PlayersTracker {
 
   class Character {
     private model_: Model;
+    GetModel() { return this.model_; }
+
     private humanoid_!: Humanoid;
+    GetHumanoid() {
+      if (this.humanoid_ !== undefined) return this.humanoid_;
+
+      this.humanoid_ = <Humanoid>this.model_.WaitForChild("Humanoid");
+      return this.humanoid_;
+    }
+
     private animator_!: Animator;
+    GetAnimator() {
+      if (this.animator_ !== undefined) return this.animator_;
+
+      this.animator_ = <Animator>this.GetHumanoid().WaitForChild("Animator");
+      return this.animator_;
+    }
+
     private root_part_!: BasePart;
+    GetRootPart() {
+      if (this.root_part_ !== undefined) return this.root_part_;
+
+      this.root_part_ = <BasePart>this.model_.WaitForChild("HumanoidRootPart");
+      return this.root_part_;
+    }
+
     private maid_: Maid = new Maid();
 
     private player_tracker_refference_: PlayerTracker;
@@ -186,10 +209,11 @@ export namespace PlayersTracker {
     async Initialize() {
       //wait til the character will be on the workspace;
       while (this.model_.Parent !== Workspace) wait();
+      this.humanoid_ = <Humanoid>this.model_.WaitForChild("Humanoid");
 
       this.maid_.GiveTask(this.humanoid_.HealthChanged.Connect((health) => this.OnHealthChanged(health)));
       //waits with 30 fps delay to load everything;
-      wait();
+      task.wait(1 / 30);
       this.player_tracker_refference_.SetCharacter(this);
       this.player_tracker_refference_.DiedStatusSet(false);
     }
@@ -203,33 +227,7 @@ export namespace PlayersTracker {
       this.player_tracker_refference_.DiedStatusSet(true);
     }
 
-    GetModel() {
-      return this.model_;
-    }
-
-    GetHumanoid() {
-      if (this.humanoid_ !== undefined) return this.humanoid_;
-
-      this.humanoid_ = <Humanoid>this.model_.WaitForChild("Humanoid");
-      return this.humanoid_;
-    }
-
-    GetAnimator() {
-      if (this.animator_ !== undefined) return this.animator_;
-
-      this.animator_ = <Animator>this.GetHumanoid().WaitForChild("Animator");
-      return this.animator_;
-    }
-
-    GetRootPart() {
-      if (this.root_part_ !== undefined) return this.root_part_;
-
-      this.root_part_ = <BasePart>this.model_.WaitForChild("HumanoidRootPart");
-      return this.root_part_;
-    }
-
-    /**called when the player is removing
-     * @hidden */
+    /**called when the player is removing */
     Destroy() {
       this.maid_.DoCleaning();
       this.maid_.Destroy();
