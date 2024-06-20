@@ -9,6 +9,9 @@ export namespace PlayersTracker {
     private player_: Player;
     private maid_: Maid = new Maid();
     private is_dead_ = true;
+    IsDead() {
+      return this.is_dead_;
+    }
 
     private died_event_: BindableEvent = FunctionTools.Execute(() => {
       const event = new Instance("BindableEvent");
@@ -56,9 +59,9 @@ export namespace PlayersTracker {
     private WaitTilCharacterWillAppear(can_be_dead: boolean = false) {
       if (this.character_ !== undefined) {
         //if dead and can be dead and character exist, dont wait;
-        if (this.DiedStatusGet() && can_be_dead) return;
+        if (this.IsDead() && can_be_dead) return;
         //dont wait if character is alive
-        if (!this.DiedStatusGet()) return;
+        if (!this.IsDead()) return;
       }
       //waits til the character will tell that it's alive
       this.on_spawned.Wait();
@@ -116,10 +119,6 @@ export namespace PlayersTracker {
       }
 
       return animation_track;
-    }
-
-    DiedStatusGet() {
-      return this.is_dead_;
     }
 
     private ClearTemp(destroy: boolean = false) {
