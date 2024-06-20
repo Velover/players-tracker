@@ -1,3 +1,7 @@
+package [npm](https://www.npmjs.com/package/@rbxts/players-tracker)
+```bash
+npm i @rbxts/players-tracker
+```
 # Players Tracker
 
 Tracker of player's character.
