@@ -15,14 +15,14 @@ export namespace PlayersTracker {
       this.maid_.GiveTask(event);
       return event;
     })
-    readonly on_died_: RBXScriptSignal = this.died_event_.Event;
+    readonly on_died: RBXScriptSignal = this.died_event_.Event;
 
     private spawned_event_: BindableEvent = FunctionTools.Execute(() => {
       const event = new Instance("BindableEvent");
       this.maid_.GiveTask(event);
       return event;
     })
-    readonly on_spawned_: RBXScriptSignal = this.spawned_event_.Event;
+    readonly on_spawned: RBXScriptSignal = this.spawned_event_.Event;
 
     private character_?: Character;
     //used to destroy the previos one if something went wrong;
@@ -61,7 +61,7 @@ export namespace PlayersTracker {
         if (!this.DiedStatusGet()) return;
       }
       //waits til the character will tell that it's alive
-      this.on_spawned_.Wait();
+      this.on_spawned.Wait();
     }
 
     async AwaitHumanoid(can_be_dead: boolean = false) {
