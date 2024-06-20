@@ -5,6 +5,7 @@ Tracker of player's character.
 Handle getting humanoid / root_part / character / animator from one place
 
 ##Getting the Tracker
+
 ###Player Tracker
 ```ts
 const player_tracker = PlayersTracker.GetTracker(player)!;
@@ -17,6 +18,7 @@ const local_player_tracker = PlayersTracker.GetLocalTracker()
 ```
 
 ##Getting items
+
 ###can_be_dead
 ```ts
 /**
