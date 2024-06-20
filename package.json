@@ -1,5 +1,5 @@
 {
-  "name": "@rbxts/player_tracker",
+  "name": "@rbxts/player-tracker",
   "version": "1.0.0",
   "main": "out/init.lua",
   "scripts": {
@@ -8,9 +8,8 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Catargo",
+  "license": "MIT",
   "types": "out/index.d.ts",
   "files": [
     "out",
@@ -36,5 +35,14 @@
     "@rbxts/maid": "^1.1.0",
     "@rbxts/services": "^1.5.4",
     "@rbxts/tool_pack": "^1.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Velover/player-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Velover/player-tracker/issues"
+  },
+  "homepage": "https://github.com/Velover/player-tracker#readme",
+  "description": ""
 }
