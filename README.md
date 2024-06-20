@@ -79,7 +79,11 @@ player_tracker.on_spawned.Connect(() => {})
 ```
 
 
-
+## Functions
+### IsDead
+```ts
+const is_dead = player_tracker.IsDead()
+```
 
 
 
