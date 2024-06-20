@@ -1,5 +1,5 @@
 {
-  "name": "@rbxts/player-tracker",
+  "name": "@rbxts/players-tracker",
   "version": "1.0.1",
   "main": "out/init.lua",
   "scripts": {
