@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/players-tracker",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
@@ -13,6 +13,7 @@
   "types": "out/index.d.ts",
   "files": [
     "out",
+    "default.project.json",
     "!**/*.tsbuildinfo"
   ],
   "publishConfig": {

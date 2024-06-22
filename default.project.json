@@ -1,0 +1,6 @@
+{
+	"name": "player-tracker",
+	"tree": {
+		"$path": "out"
+	}
+}
