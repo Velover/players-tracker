@@ -252,6 +252,11 @@ export namespace PlayersTracker {
     return player_list.get(player);
   }
 
+  export async function AwaitTracker(player: Player) {
+    while (GetTracker(player) === undefined) task.wait();
+    return GetTracker(player)!;
+  }
+
   /**@client */
   export function GetLocalTracker() {
     return player_list.get(Players.LocalPlayer)!;
