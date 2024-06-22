@@ -12,13 +12,14 @@ Handle getting humanoid / root_part / character / animator from one place
 
 ### Player Tracker
 ```ts
-const player_tracker = PlayersTracker.GetTracker(player)!;
+const player_tracker: PlayerTracker | undefined = PlayersTracker.GetTracker(player);
+const player_tracker: Promise<PlayerTracker> = PlayersTracker.AwaitTracker(player);
 ```
 
 ### Local Player Tracker
 ```ts
 /**@client*/
-const local_player_tracker = PlayersTracker.GetLocalTracker()
+const local_player_tracker: PlayerTracker = PlayersTracker.GetLocalTracker()
 ```
 
 ## Getting items
