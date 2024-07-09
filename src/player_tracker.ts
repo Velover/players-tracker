@@ -257,7 +257,6 @@ export namespace PlayersTracker {
     return GetTracker(player)!;
   }
 
-  /**@client */
   export function GetLocalTracker() {
     return player_list.get(Players.LocalPlayer)!;
   }
