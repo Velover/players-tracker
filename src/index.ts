@@ -1,1 +1,1 @@
-export * from "./player_tracker"
+export * from "./player_tracker";
