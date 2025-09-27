@@ -265,6 +265,7 @@ export namespace PlayersTracker {
 	function OnPlayerRemoving(player: Player) {
 		//destoroys the player
 		player_list.get(player)?.Destroy();
+		player_list.delete(player);
 	}
 
 	const players = Players.GetPlayers();
@@ -284,7 +285,12 @@ export namespace PlayersTracker {
 	}
 
 	export async function AwaitTracker(player: Player) {
-		while (GetTracker(player) === undefined) task.wait();
+		const start = os.clock();
+		while (GetTracker(player) === undefined) {
+			if (os.clock() - start > 30)
+				throw `Timed out waiting for player tracker for ${player.Name}`;
+			task.wait();
+		}
 		return GetTracker(player)!;
 	}
 
